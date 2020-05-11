@@ -1,0 +1,4 @@
+D:\Software folder\Serial-Lab-master\Serial-Lab-master\Serial Lab\obj\Release\Seriallab.AboutBox1.resources
+D:\Software folder\Serial-Lab-master\Serial-Lab-master\Serial Lab\obj\Release\Seriallab.MainForm.resources
+D:\Software folder\Serial-Lab-master\Serial-Lab-master\Serial Lab\obj\Release\Seriallab.Properties.Resources.resources
+D:\Software folder\Serial-Lab-master\Serial-Lab-master\Serial Lab\obj\Release\Serial Lab.csproj.GenerateResource.cache
