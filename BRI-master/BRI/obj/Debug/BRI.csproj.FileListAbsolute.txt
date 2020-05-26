@@ -1,0 +1,12 @@
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.AboutBox1.resources
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.MainForm.resources
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.Properties.Resources.resources
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.csproj.GenerateResource.cache
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.csproj.CoreCompileInputs.cache
+D:\Software folder\BRI-master\BRI\bin\Debug\BRI.exe.config
+D:\Software folder\BRI-master\BRI\bin\Debug\BRI.exe
+D:\Software folder\BRI-master\BRI\bin\Debug\BRI.pdb
+D:\Software folder\BRI-master\BRI\bin\Debug\LibLED.dll
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.csproj.CopyComplete
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.exe
+D:\Software folder\BRI-master\BRI\obj\Debug\BRI.pdb

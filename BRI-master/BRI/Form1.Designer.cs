@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.connect = new System.Windows.Forms.Button();
             this.portConfig = new System.Windows.Forms.ComboBox();
@@ -59,6 +59,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.read_options_group = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.led1 = new ThanhDangNguyen.LibLED.Led();
             this.dsiplayas_options_panel = new System.Windows.Forms.Panel();
             this.display_hex_radiobutton = new System.Windows.Forms.RadioButton();
             this.display_string_radiobutton = new System.Windows.Forms.RadioButton();
@@ -329,7 +331,7 @@
             // 
             // rx_textarea
             // 
-            this.rx_textarea.BackColor = System.Drawing.Color.White;
+            this.rx_textarea.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.rx_textarea.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rx_textarea.ContextMenuStrip = this.contextMenuStrip1;
             this.rx_textarea.DetectUrls = false;
@@ -341,6 +343,7 @@
             this.rx_textarea.Size = new System.Drawing.Size(533, 305);
             this.rx_textarea.TabIndex = 29;
             this.rx_textarea.Text = "";
+            this.rx_textarea.TextChanged += new System.EventHandler(this.rx_textarea_TextChanged);
             // 
             // contextMenuStrip1
             // 
@@ -358,6 +361,8 @@
             // 
             // read_options_group
             // 
+            this.read_options_group.Controls.Add(this.label5);
+            this.read_options_group.Controls.Add(this.led1);
             this.read_options_group.Controls.Add(this.dsiplayas_options_panel);
             this.read_options_group.Controls.Add(this.label4);
             this.read_options_group.Location = new System.Drawing.Point(18, 16);
@@ -367,23 +372,44 @@
             this.read_options_group.TabStop = false;
             this.read_options_group.Text = "Tuỳ chọn hiển thị";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(393, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Cảnh báo ngưỡng";
+            // 
+            // led1
+            // 
+            this.led1.ChangeStateOnClick = false;
+            this.led1.Color = System.Drawing.Color.Red;
+            this.led1.Location = new System.Drawing.Point(491, 12);
+            this.led1.Name = "led1";
+            this.led1.On = false;
+            this.led1.Size = new System.Drawing.Size(36, 36);
+            this.led1.TabIndex = 26;
+            this.led1.StateChanged += new System.EventHandler(this.led1_StateChanged);
+            this.led1.Click += new System.EventHandler(this.rx_textarea_TextChanged);
+            // 
             // dsiplayas_options_panel
             // 
             this.dsiplayas_options_panel.Controls.Add(this.display_hex_radiobutton);
             this.dsiplayas_options_panel.Controls.Add(this.display_string_radiobutton);
             this.dsiplayas_options_panel.Location = new System.Drawing.Point(83, 18);
             this.dsiplayas_options_panel.Name = "dsiplayas_options_panel";
-            this.dsiplayas_options_panel.Size = new System.Drawing.Size(230, 25);
+            this.dsiplayas_options_panel.Size = new System.Drawing.Size(280, 25);
             this.dsiplayas_options_panel.TabIndex = 18;
             // 
             // display_hex_radiobutton
             // 
             this.display_hex_radiobutton.AutoSize = true;
-            this.display_hex_radiobutton.Location = new System.Drawing.Point(63, 5);
+            this.display_hex_radiobutton.Location = new System.Drawing.Point(150, 5);
             this.display_hex_radiobutton.Name = "display_hex_radiobutton";
-            this.display_hex_radiobutton.Size = new System.Drawing.Size(47, 17);
+            this.display_hex_radiobutton.Size = new System.Drawing.Size(106, 17);
             this.display_hex_radiobutton.TabIndex = 26;
-            this.display_hex_radiobutton.Text = "HEX";
+            this.display_hex_radiobutton.Text = "Dữ liệu kiểu HEX";
             this.display_hex_radiobutton.UseVisualStyleBackColor = true;
             // 
             // display_string_radiobutton
@@ -392,10 +418,10 @@
             this.display_string_radiobutton.Checked = true;
             this.display_string_radiobutton.Location = new System.Drawing.Point(3, 5);
             this.display_string_radiobutton.Name = "display_string_radiobutton";
-            this.display_string_radiobutton.Size = new System.Drawing.Size(52, 17);
+            this.display_string_radiobutton.Size = new System.Drawing.Size(110, 17);
             this.display_string_radiobutton.TabIndex = 25;
             this.display_string_radiobutton.TabStop = true;
-            this.display_string_radiobutton.Text = "String";
+            this.display_string_radiobutton.Text = "Dữ liệu kiểu chuỗi";
             this.display_string_radiobutton.UseVisualStyleBackColor = true;
             // 
             // label4
@@ -811,54 +837,53 @@
             // graph
             // 
             this.graph.BorderlineWidth = 0;
-            chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.None;
-            chartArea1.AxisX.IsMarginVisible = false;
-            chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisX.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            chartArea1.AxisX.MajorGrid.Interval = 0D;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.AxisX.MajorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.InsideArea;
-            chartArea1.AxisX.MinorGrid.Enabled = true;
-            chartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            chartArea1.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.AxisY.MinorGrid.Enabled = true;
-            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            chartArea1.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            chartArea1.BorderColor = System.Drawing.Color.Maroon;
-            chartArea1.BorderWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            this.graph.ChartAreas.Add(chartArea1);
+            chartArea2.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.None;
+            chartArea2.AxisX.IsMarginVisible = false;
+            chartArea2.AxisX.LabelStyle.Enabled = false;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            chartArea2.AxisX.MajorGrid.Interval = 0D;
+            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea2.AxisX.MajorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.InsideArea;
+            chartArea2.AxisX.MinorGrid.Enabled = true;
+            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            chartArea2.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea2.AxisY.MinorGrid.Enabled = true;
+            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            chartArea2.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea2.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
+            chartArea2.BorderColor = System.Drawing.Color.Maroon;
+            chartArea2.BorderWidth = 0;
+            chartArea2.Name = "ChartArea1";
+            this.graph.ChartAreas.Add(chartArea2);
             this.graph.ContextMenuStrip = this.graph_menu;
-            legend1.Alignment = System.Drawing.StringAlignment.Center;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
-            legend1.MaximumAutoSize = 20F;
-            legend1.Name = "Legend1";
-            legend1.TitleAlignment = System.Drawing.StringAlignment.Near;
-            legend1.TitleFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.graph.Legends.Add(legend1);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend2.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend2.MaximumAutoSize = 20F;
+            legend2.Name = "Legend1";
+            legend2.TitleAlignment = System.Drawing.StringAlignment.Near;
+            legend2.TitleFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.graph.Legends.Add(legend2);
             this.graph.Location = new System.Drawing.Point(1, 83);
             this.graph.Name = "graph";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(182)))));
-            series1.Legend = "Legend1";
-            series1.Name = "Constant";
-            series1.YValuesPerPoint = 32;
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(25)))), ((int)(((byte)(28)))));
-            series2.Legend = "Legend1";
-            series2.Name = "Varible";
-            this.graph.Series.Add(series1);
-            this.graph.Series.Add(series2);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(182)))));
+            series3.Legend = "Legend1";
+            series3.Name = "Constant";
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(25)))), ((int)(((byte)(28)))));
+            series4.Legend = "Legend1";
+            series4.Name = "Varible";
+            this.graph.Series.Add(series3);
+            this.graph.Series.Add(series4);
             this.graph.Size = new System.Drawing.Size(550, 298);
             this.graph.TabIndex = 16;
             this.graph.Text = "chart2";
@@ -922,14 +947,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(606, 616);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.serial_options_group);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1040,6 +1065,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private ThanhDangNguyen.LibLED.Led led1;
+        private System.Windows.Forms.Label label5;
     }
 }
 

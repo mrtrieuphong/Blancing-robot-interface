@@ -18,7 +18,7 @@ namespace BRI
     public partial class MainForm : Form
     {
         public string data{ get; set; }
-        int graph_scaler = 500;
+        int graph_scaler = 100;
         int send_repeat_counter = 0;
         bool send_data_flag = false;
         bool plotter_flag = false;
@@ -114,7 +114,7 @@ namespace BRI
                     byte[] dataRecevied = new byte[dataLength];
                     int nbytes = mySerial.Read(dataRecevied, 0, dataLength);
                     if (nbytes == 0) return;
-
+                    
                     
 
 
@@ -126,7 +126,7 @@ namespace BRI
                         {
                             if (display_hex_radiobutton.Checked)
                                 data = BitConverter.ToString(dataRecevied);
-
+                            
                             backgroundWorker1.RunWorkerAsync();
                         }
 
@@ -154,12 +154,24 @@ namespace BRI
         /* Append text to rx_textarea*/
         private void update_rxtextarea_event(object sender, DoWorkEventArgs e)
         {
-            this.BeginInvoke((Action)(() =>
-            {
-                if (rx_textarea.Lines.Count() > 5000)
-                    rx_textarea.ResetText();
-                rx_textarea.AppendText("[RX]> " + data);
-            }));
+             this.BeginInvoke((Action)(() =>
+              {
+                  if (rx_textarea.Lines.Count() > 5000)
+                      rx_textarea.ResetText();
+                  rx_textarea.AppendText(data);
+                  double number;
+                  string[] variables = data.Split('\n')[0].Split(',');
+                  for (int i = 0; i < variables.Length && i < 5; i++)
+                  {
+                      if (double.TryParse(variables[i], out number))
+                      {
+                          if (number < 170)
+                              led1.On = true;
+                          else
+                              led1.On = false;
+                      }
+                  }
+              }));
         }
 
         /* Enable data logger and log file selection */
@@ -500,13 +512,36 @@ namespace BRI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            
+            
         }
 
         private void graph_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rx_textarea_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void led1_StateChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        
     }
   }
 
